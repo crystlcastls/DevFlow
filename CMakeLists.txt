@@ -9,4 +9,13 @@ add_executable(devflow
     main.cpp
     Issue.cpp
     IssueManager.cpp
-)
+) 
+
+enable_testing() 
+
+add_executable(test_issue 
+    tests/test_issue.cpp 
+    Issue.cpp 
+) 
+
+add_test(NAME IssueTests COMMAND test_issue)

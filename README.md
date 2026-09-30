@@ -32,7 +32,25 @@ DevFlow currently separates issue data from issue-management logic:
 
 ## Running DevFlow
 
-Compile the project with:
+DevFlow uses CMake as its build system.
+
+Configure the project:
 
 ```bash
-g++ "DevFlow main.cpp" Issue.cpp IssueManager.cpp -o devflow
+cmake -S . -B build
+```
+
+Build the project:
+
+```bash
+cmake --build build
+```
+
+Run DevFlow:
+
+```bash
+./build/devflow
+``` 
+## Project Status 
+
+Devflow is actively being developed...
