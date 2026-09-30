@@ -30,6 +30,7 @@ class IssueManager {
         IssueManager(); 
 
         void createIssue(); 
+        int createIssue(const string& title, const string& description, const string& priority, const string& assignee); 
         void viewIssues() const; 
         void updateIssue(); 
         void searchIssue() const;

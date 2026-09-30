@@ -231,19 +231,44 @@ void IssueManager::createIssue() {
     title = getValidText("Enter issue title: ");
     description = getValidText("Enter description: ");
     priority = getValidPriority(); 
-    assignee = getValidText("Enter assignee: ");
+    assignee = getValidText("Enter assignee: "); 
 
-    Issue newIssue(nextIssueId, title, description, priority, assignee); 
+    int createdIssueId = createIssue(title, description, priority, assignee); 
+
+    if (createdIssueId == -1) { 
+        cout << "\nError: Invalid input. Issue not created." << endl;
+        return;
+    } 
+
+    cout << "\nIssue #" << createdIssueId << " created successfully!" << endl;
+} 
+
+int IssueManager::createIssue(const string& title, const string& description, const string& priority, const string& assignee) { 
+    string cleanedTitle = trim(title);
+    string cleanedDescription = trim(description); 
+    string cleanedPriority = normalizePriority(trim(priority));
+    string cleanedAssignee = trim(assignee); 
+
+    if (isBlank(cleanedTitle) || isBlank(cleanedDescription) || isBlank(cleanedAssignee)) {  
+        return -1; 
+    } 
+
+    if (cleanedPriority != "Low" && cleanedPriority != "Medium" && cleanedPriority != "High" && cleanedPriority != "Critical") { 
+        return -1; 
+    }
+    
+    Issue newIssue(nextIssueId, cleanedTitle, cleanedDescription, cleanedPriority, cleanedAssignee); 
 
     issues.push_back(newIssue);
 
-    cout << "\nIssue #" << nextIssueId
-         << " created successfully!" << endl;
+    int createdIssueId = nextIssueId; 
 
     nextIssueId++; 
 
-    saveIssues();
-} 
+    saveIssues(); 
+
+    return createdIssueId; 
+}
 
 void IssueManager::filterIssuesByAssignee() const { 
     string selectedAssignee; 

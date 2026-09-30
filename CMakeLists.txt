@@ -18,4 +18,12 @@ add_executable(test_issue
     Issue.cpp 
 ) 
 
-add_test(NAME IssueTests COMMAND test_issue)
+add_test(NAME IssueTests COMMAND test_issue) 
+
+add_executable(test_issue_manager 
+    tests/test_issue_manager.cpp 
+    Issue.cpp 
+    IssueManager.cpp 
+) 
+
+add_test(NAME IssueManagerTests COMMAND test_issue_manager)
