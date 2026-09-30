@@ -2,4 +2,5 @@ devflow
 issues.txt
 .DS_Store 
 .vscode/ 
-*.dSYM/
+*.dSYM/ 
+build/
