@@ -11,7 +11,8 @@ private:
     string description; 
     string priority; 
     string status; 
-    string assignee;  
+    string assignee; 
+    string createdAt;  
 
     public: 
         Issue(int id, string title, string description, string priority, string assignee); 
@@ -20,10 +21,12 @@ private:
         string getDescription() const; 
         string getPriority() const; 
         string getStatus() const; 
-        string getAssignee() const;
+        string getAssignee() const; 
+        string getCreatedAt() const;
 
         void setStatus(string newStatus); 
-        void setAssignee(string newAssignee);
+        void setAssignee(string newAssignee); 
+        void setCreatedAt(string newCreatedAt);
 
 };
 

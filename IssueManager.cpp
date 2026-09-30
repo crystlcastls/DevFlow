@@ -412,7 +412,9 @@ void IssueManager::displayIssue(const Issue& issue) const {
     cout << "Description: " << issue.getDescription() << endl;
     cout << "Priority: " << issue.getPriority() << endl;
     cout << "Status: " << issue.getStatus() << endl;
-    cout << "Assignee: " << issue.getAssignee() << endl;
+    cout << "Assignee: " << issue.getAssignee() << endl; 
+
+    cout << "Created At: " << issue.getCreatedAt() << endl;
 } 
 
 int IssueManager::getPriorityRank(string priority) const { 
@@ -511,7 +513,8 @@ void IssueManager::saveIssues() const {
             << issue.getDescription() << "|"
             << issue.getPriority() << "|"
             << issue.getStatus() << "|"
-            << issue.getAssignee() << endl;
+            << issue.getAssignee() << "|"
+            << issue.getCreatedAt() << endl;
     }
 
     file.close();
@@ -543,13 +546,15 @@ void IssueManager::loadIssues() {
         string priority; 
         string status; 
         string assignee; 
+        string createdAt; 
 
         if (!getline(ss, idString, '|') || 
             !getline(ss, title, '|') ||
             !getline(ss, description, '|') || 
             !getline(ss, priority, '|') || 
             !getline(ss, status, '|') || 
-            !getline(ss, assignee)) { 
+            !getline(ss, assignee, '|') ||
+            !getline(ss, createdAt)) { 
                 continue;
             } 
 
@@ -564,7 +569,8 @@ void IssueManager::loadIssues() {
         }
 
         Issue loadedIssue(id, title, description, priority, assignee);
-        loadedIssue.setStatus(status); 
+        loadedIssue.setStatus(status);
+        loadedIssue.setCreatedAt(createdAt); 
 
         issues.push_back(loadedIssue); 
 

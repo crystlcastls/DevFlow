@@ -1,4 +1,5 @@
 #include "Issue.h" 
+#include <ctime> 
 
 Issue::Issue(int id, string title, string description, string priority, string assignee) { 
     this->id = id; 
@@ -7,6 +8,11 @@ Issue::Issue(int id, string title, string description, string priority, string a
     this->priority = priority; 
     this->assignee = assignee;
     status = "To Do"; 
+    time_t now = time(0);
+    createdAt = ctime(&now); 
+    if (!createdAt.empty() && createdAt.back() == '\n') { 
+        createdAt.pop_back(); 
+    }
 } 
 
 int Issue::getId() const {  
@@ -31,6 +37,10 @@ string Issue::getStatus() const {
 
 string Issue::getAssignee() const { 
     return assignee;
+} 
+
+string Issue::getCreatedAt() const { 
+    return createdAt; 
 }
 
 void Issue::setStatus(string newStatus) { 
@@ -39,6 +49,10 @@ void Issue::setStatus(string newStatus) {
 
 void Issue::setAssignee(string newAssignee) { 
     assignee = newAssignee;
+} 
+
+void Issue::setCreatedAt(string newCreatedAt) { 
+    createdAt = newCreatedAt; 
 }
 
 
